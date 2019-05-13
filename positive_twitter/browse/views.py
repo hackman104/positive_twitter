@@ -10,6 +10,6 @@ from .services import get_recent
 
 def index(request):
     results = get_recent()
-    result_text = [result.text for result in results]
+    result_text = '\n'.join([result.text for result in results])
     pprint(result_text)
-    return HttpResponse("This is a placeholder for the main page.")
+    return HttpResponse(result_text)
