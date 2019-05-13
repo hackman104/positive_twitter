@@ -1,12 +1,15 @@
+import os
+from pprint import pprint
+
+import twitter
 from django.http import HttpResponse
 from django.shortcuts import render
-import twitter
 
-api = twitter.Api(consumer_key=[consumer key],
-                  consumer_secret=[consumer secret],
-                  access_token_key=[access token],
-                  access_token_secret=[access token secret])
+from .services import get_recent
 
 
 def index(request):
+    results = get_recent()
+    result_text = [result.text for result in results]
+    pprint(result_text)
     return HttpResponse("This is a placeholder for the main page.")
